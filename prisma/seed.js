@@ -12,6 +12,12 @@ async function main() {
   await prisma.booking.deleteMany();
   await prisma.schedule.deleteMany();
   await prisma.user.deleteMany();
+  // IDs reproducibles: ADMIN = 1, tú (USER) = 2, horarios 1 y 2
+  for (const t of ["Booking", "Schedule", "User"]) {
+    await prisma.$executeRawUnsafe(
+      `ALTER SEQUENCE "${t}_id_seq" RESTART WITH 1`,
+    );
+  }
 
   const admin = await prisma.user.create({
     data: {
