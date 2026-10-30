@@ -1,9 +1,14 @@
 const { Router } = require("express");
 const authRouter = require("./auth");
+const adminRouter = require("./admin");
+const bookingsRouter = require("./bookings");
+const usersRouter = require("./users");
 
 const router = Router();
 
 router.use("/auth", authRouter);
-// Monta aquí tus routers de los hitos 2, 3 y 4
+router.use("/admin", adminRouter);
+router.use("/bookings", bookingsRouter);
+router.use("/users", usersRouter);
 
 module.exports = router;
